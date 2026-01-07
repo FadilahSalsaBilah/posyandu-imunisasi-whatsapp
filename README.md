@@ -98,7 +98,7 @@ Folder `backend/` dapat dipakai jika ingin memisahkan backend saat deploy terten
    ```
 
    Isi minimal:
-   - `PORT` – port server (default 5050)
+   - `PORT` – port server (default 3000)
    - `DB_PATH` – path ke file database SQLite (default `./posyandu.db`)
    - `SESSION_SECRET` – string random panjang untuk session
    - `POSYANDU_*` – informasi posyandu (nama, lokasi, kontak)
@@ -120,7 +120,7 @@ Folder `backend/` dapat dipakai jika ingin memisahkan backend saat deploy terten
 
 6. **Akses aplikasi di browser:**
 
-   - Default: `http://localhost:5050`
+   - Default: `http://localhost:3000`
 
 ---
 
@@ -128,7 +128,7 @@ Folder `backend/` dapat dipakai jika ingin memisahkan backend saat deploy terten
 
 Contoh konfigurasi dapat dilihat di `.env.example`. Variabel penting:
 
-- `PORT` – port aplikasi (default `5050`)
+- `PORT` – port aplikasi (default `3000`)
 - `DB_PATH` – path file SQLite (default `./posyandu.db`)
 - `SESSION_SECRET` – secret untuk session
 - `POSYANDU_NAME`, `POSYANDU_LOCATION`, `POSYANDU_CONTACT`

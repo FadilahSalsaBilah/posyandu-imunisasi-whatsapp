@@ -240,7 +240,7 @@ app.get("/logs", requireAuth, (req, res) => {
   res.render("logs", { user: req.session.user, logs });
 });
 
-const port = Number(process.env.PORT || 5050);
+const port = Number(process.env.PORT || 3000);
 app.listen(port, () => {
   console.log(`✅ Server jalan: ${process.env.BASE_URL || `http://localhost:${port}`}`);
   startScheduler();
