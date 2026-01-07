@@ -23,12 +23,7 @@ Fokus utama:
 
 ## Struktur Folder
 
-Repo ini berisi dua set kode dengan struktur yang sama:
-
-- `src/`, `views/`, `public/`  
-- `backend/src/`, `backend/views/`, `backend/public/`
-
-Untuk development normal, cukup gunakan struktur root:
+Struktur yang dipakai saat ini:
 
 - `src/` – kode server utama (Express, routing, scheduler, WhatsApp)
 - `views/` – template EJS (dashboard, parents, children, schedules, logs, login)
@@ -203,6 +198,42 @@ Tersedia script berikut di `package.json`:
 
 - `npm run dev` – menjalankan server Express (`node src/index.js`)
 - `npm run seed` – menjalankan seeding database (`node src/seed.js`)
+
+---
+
+## Deploy ke Railway (Contoh Produksi)
+
+Contoh konfigurasi deploy backend ke Railway (seperti yang dipakai untuk tugas kuliah ini):
+
+- Source repo: GitHub `FadilahSalsaBilah/posyandu-imunisasi-whatsapp`
+- Branch: `main`
+- Start command:
+
+  ```bash
+  node src/index.js
+  ```
+
+- Target port di Railway: `3000`
+
+### Environment variables di Railway
+
+Isi variables di dashboard Railway (Environment / Variables), misalnya:
+
+- `DB_PATH=./posyandu.db`
+- `SESSION_SECRET=<secret panjang>`
+- `POSYANDU_NAME=Posyandu Buncis`
+- `POSYANDU_LOCATION=Kelurahan Pondok Cina`
+- `POSYANDU_CONTACT=0812-3456-7890`
+- `WHATSAPP_PROVIDER=mock` (aman untuk demo/tugas, hanya log ke console)
+- `FONNTE_API_URL=https://api.fonnte.com`
+- `TZ_OFFSET=+07:00`
+- `BASE_URL=https://posyandu-imunisasi-whatsapp-production.up.railway.app`
+
+Jika nanti ingin mengaktifkan pengiriman WA sungguhan:
+
+- Ubah `WHATSAPP_PROVIDER=fonnte`
+- Tambahkan `FONNTE_TOKEN=<token dari dashboard Fonnte>`
+- Pastikan token tidak pernah dimasukkan ke Git, hanya ke environment server.
 
 ---
 
