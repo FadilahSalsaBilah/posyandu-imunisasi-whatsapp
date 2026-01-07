@@ -1,0 +1,44 @@
+<%- include("layout", { title: "Jadwal", user, body: `
+  <h1>Jadwal Imunisasi</h1>
+
+  <div class="card">
+    <h2>Tambah Jadwal (otomatis buat H-7, H-1, H0)</h2>
+    <form method="post" action="/schedules" class="form">
+      <label>Balita</label>
+      <select name="child_id" required>
+        ${children.map(c => `<option value="${c.id}">${c.name} (Ortu: ${c.parent_name})</option>`).join("")}
+      </select>
+
+      <label>Jenis Imunisasi</label>
+      <select name="immunization_id" required>
+        ${immun.map(i => `<option value="${i.id}">${i.name}</option>`).join("")}
+      </select>
+
+      <label>Tanggal</label><input type="date" name="date" required />
+      <label>Jam</label><input type="time" name="time" required />
+      <label>Lokasi (opsional)</label><input name="location" placeholder="${process.env.POSYANDU_LOCATION || ""}" />
+      <label>Catatan (opsional)</label><input name="notes" placeholder="Bawa buku KIA, dll" />
+      <button type="submit">Simpan Jadwal</button>
+    </form>
+    <p class="muted">H0 dikirim jam 07:00 (hari H). H-7 & H-1 ikut jam jadwal.</p>
+  </div>
+
+  <div class="card">
+    <h2>Daftar Jadwal</h2>
+    <table>
+      <thead><tr><th>ID</th><th>Waktu</th><th>Balita</th><th>Orang Tua</th><th>Imunisasi</th><th>Status</th></tr></thead>
+      <tbody>
+        ${schedules.map(s => `
+          <tr>
+            <td>${s.id}</td>
+            <td>${s.scheduled_at}</td>
+            <td>${s.child_name}</td>
+            <td>${s.parent_name}</td>
+            <td>${s.imun_name}</td>
+            <td>${s.status}</td>
+          </tr>
+        `).join("")}
+      </tbody>
+    </table>
+  </div>
+` }) %>

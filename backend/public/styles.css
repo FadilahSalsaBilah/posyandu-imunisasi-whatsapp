@@ -1,0 +1,29 @@
+:root { font-family: system-ui, Arial, sans-serif; }
+body { margin:0; background:#f6f7fb; color:#111; }
+.topbar { display:flex; justify-content:space-between; align-items:center; padding:14px 18px; background:#111; color:#fff; }
+.brand { font-weight:700; }
+.nav a { color:#fff; margin-left:14px; text-decoration:none; opacity:.9; }
+.nav a:hover { opacity:1; text-decoration:underline; }
+
+.container { max-width:1100px; margin:22px auto; padding:0 16px; }
+.card { background:#fff; border-radius:12px; padding:16px; margin:14px 0; box-shadow:0 6px 18px rgba(0,0,0,.06); }
+.grid { display:grid; grid-template-columns: repeat(4, 1fr); gap:12px; }
+.stat { background:#fff; border-radius:12px; padding:14px; box-shadow:0 6px 18px rgba(0,0,0,.06); }
+.stat .k { font-size:12px; opacity:.7; }
+.stat .v { font-size:26px; font-weight:800; margin-top:4px; }
+
+h1 { margin:6px 0 10px; }
+h2 { margin:0 0 10px; font-size:16px; }
+
+.form { display:grid; gap:8px; max-width:520px; }
+input, select { padding:10px; border:1px solid #ddd; border-radius:10px; background:#fff; }
+button { padding:10px 12px; border:0; border-radius:10px; background:#111; color:#fff; cursor:pointer; }
+button:hover { opacity:.92; }
+.row { display:flex; gap:10px; align-items:center; }
+.alert { padding:10px; background:#ffe6e6; border:1px solid #ffb3b3; border-radius:10px; margin:10px 0; }
+.muted { opacity:.7; font-size:12px; margin-top:10px; }
+
+table { width:100%; border-collapse:collapse; }
+th, td { padding:10px; border-bottom:1px solid #eee; text-align:left; vertical-align:top; font-size:13px; }
+.footer { text-align:center; padding:18px; opacity:.6; }
+@media (max-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } }

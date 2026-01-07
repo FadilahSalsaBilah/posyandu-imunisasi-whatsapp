@@ -1,0 +1,17 @@
+.env
+backend/.env
+node_modules
+backend/node_modules
+posyandu.db
+posyandu.db-*
+posyandu_backup.db
+backend/posyandu.db
+backend/posyandu.db-*
+backend/posyandu_backup.db
+logs
+*.log
+dist
+build
+.vercel
+.netlify
+
