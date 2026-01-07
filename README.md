@@ -1,12 +1,139 @@
 # Posyandu Imunisasi WhatsApp
 
-Aplikasi web untuk mengelola jadwal imunisasi balita di Posyandu, lengkap dengan pengingat otomatis via WhatsApp ke orang tua.
+Aplikasi web sederhana untuk mengelola jadwal imunisasi balita di Posyandu, lengkap dengan pengingat otomatis via WhatsApp ke orang tua.
 
-Fokus utama:
+Jika kamu **tidak paham coding**, cukup baca bagian:
+
+- [Cara Pakai Cepat di Laptop (Tanpa Ngoding)](#cara-pakai-cepat-di-laptop-tanpa-ngoding)
+- [Cara Pakai Cepat Versi Online (Railway)](#cara-pakai-cepat-versi-online-railway)
+
+Bagian lain di bawahnya boleh dilewati kalau kamu tidak butuh detail teknis.
+
+Fokus utama aplikasi:
 - Manajemen data orang tua dan balita
 - Penjadwalan imunisasi
 - Pengiriman pengingat WhatsApp (H-7, H-1, dan H0)
 - Dashboard statistik dan log pengiriman notifikasi
+
+---
+
+## Cara Pakai Cepat di Laptop (Tanpa Ngoding)
+
+1. **Siapkan alat:**
+   - Sudah install **Node.js** (kalau belum, minta tolong teman/teknisi buat install).
+
+2. **Ambil project ini dari GitHub:**
+   - Buka link:  
+     `https://github.com/FadilahSalsaBilah/posyandu-imunisasi-whatsapp`
+   - Klik tombol **Code → Download ZIP**.
+   - Extract ZIP tersebut, lalu buka folder hasil extract.
+
+3. **Buka folder di Terminal:**
+   - Klik address bar di Explorer, tulis `cmd` lalu Enter.
+   - Akan muncul jendela hitam (Command Prompt) di folder project.
+
+4. **Install kebutuhan aplikasi:**
+
+   ```bash
+   npm install
+   ```
+
+   Jalankan sekali saja. Tunggu sampai selesai.
+
+5. **Siapkan pengaturan aplikasi (.env):**
+   - Di dalam folder project, akan ada file `.env.example`.
+   - Copy file itu dan beri nama baru `.env`.
+   - Buka `.env` dengan Notepad, dan isi nilai yang mudah:
+     - `PORT=3000`
+     - `DB_PATH=./posyandu.db`
+     - `SESSION_SECRET=` isi dengan teks panjang bebas (contoh sudah ada di file kamu)
+     - `POSYANDU_NAME` / `POSYANDU_LOCATION` / `POSYANDU_CONTACT` bisa disesuaikan nama posyandu.
+   - Jika hanya untuk tugas kuliah, pengaturan WhatsApp boleh dibiarkan default, atau pakai mode `mock` (tidak benar-benar kirim WA).
+
+6. **Isi data awal (buat akun admin & daftar imunisasi):**
+
+   ```bash
+   npm run seed
+   ```
+
+   Setelah selesai, akan ada akun admin:
+
+   - Username: `admin`
+   - Password: `admin123`
+
+7. **Jalankan aplikasi:**
+
+   ```bash
+   npm run dev
+   ```
+
+   Kalau berhasil, di terminal akan muncul kurang lebih:
+
+   - `✅ Server jalan: http://localhost:3000`
+   - `✅ Scheduler aktif: cek notifikasi tiap 1 menit`
+
+8. **Buka di browser:**
+   - Buka Chrome / Edge.
+   - Ketik alamat: `http://localhost:3000`
+   - Login pakai:
+     - Username: `admin`
+     - Password: `admin123`
+
+Selesai. Kamu sudah bisa input orang tua, balita, dan jadwal imunisasi.
+
+---
+
+## Cara Pakai Cepat Versi Online (Railway)
+
+Bagian ini menjelaskan singkat cara menjalankan aplikasi di internet menggunakan Railway.  
+Langkah detil sudah disiapkan, jadi kamu bisa cukup ikuti menu tanpa perlu paham kode.
+
+1. **Hubungkan GitHub ke Railway:**
+   - Buat akun di https://railway.app (pakai GitHub).
+   - Buat project baru, pilih repo:
+     `FadilahSalsaBilah/posyandu-imunisasi-whatsapp`.
+
+2. **Atur cara menjalankan aplikasi:**
+   - Root directory: biarkan default (root project).
+   - Build command:
+
+     ```bash
+     npm install && npm run seed
+     ```
+
+     (install kebutuhan + isi data awal admin dan imunisasi setiap deploy).
+
+   - Start command:
+
+     ```bash
+     node src/index.js
+     ```
+
+3. **Isi Environment Variables di Railway:**
+   Di tab **Variables / Environment**, tambahkan (sesuai kebutuhan):
+
+   - `DB_PATH=./posyandu.db`
+   - `SESSION_SECRET=` isi dengan secret yang sama seperti di `.env` lokal
+   - `POSYANDU_NAME=Posyandu Buncis`
+   - `POSYANDU_LOCATION=Kelurahan Pondok Cina`
+   - `POSYANDU_CONTACT=0812-3456-7890`
+   - `WHATSAPP_PROVIDER=mock` (untuk demo/tugas kuliah, hanya log di console)
+   - `FONNTE_API_URL=https://api.fonnte.com`
+   - `TZ_OFFSET=+07:00`
+   - `BASE_URL=https://posyandu-imunisasi-whatsapp-production.up.railway.app`
+
+   Untuk tugas kuliah, pengaturan ini sudah cukup.  
+   Jika nanti ingin mengirim WA sungguhan, baru ubah `WHATSAPP_PROVIDER` dan tambahkan `FONNTE_TOKEN`.
+
+4. **Deploy dan dapatkan URL:**
+   - Klik **Deploy** di Railway.
+   - Setelah statusnya `Running`, Railway akan memberikan URL, misalnya:
+     `https://posyandu-imunisasi-whatsapp-production.up.railway.app`
+   - Buka URL tersebut di browser dan login dengan:
+     - Username: `admin`
+     - Password: `admin123`
+
+URL inilah yang bisa kamu kirim ke dosen sebagai hasil tugas.
 
 ---
 
